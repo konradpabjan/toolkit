@@ -82,7 +82,7 @@ jobs:
     
     - name: Test files
       shell: bash
-      run: scripts/testArtifactFile.sh artifact-1-directory/artifact-path/world.txt hello
+      run: scripts/testArtifactFile.sh
     
     - name: Verify downloadArtifact()
       run: |
