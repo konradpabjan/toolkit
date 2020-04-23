@@ -85,7 +85,7 @@ jobs:
       run: |
         ls
         chmod +x test-artifact-file.sh
-        test-artifact-file.sh
+        ./test-artifact-file.sh
       working-directory: scripts
     
     - name: Verify downloadArtifact()
