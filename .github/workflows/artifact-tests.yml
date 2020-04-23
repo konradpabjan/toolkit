@@ -27,15 +27,16 @@ jobs:
     # Need root node_modules because certain npm packages like jest are configured for the entire repository and it won't be possible
     # without these to just compile the artifacts package
     - name: Install root npm packages
-      run: npm install
+      run: npm ci
 
     - name: Install artifact npm packages
-      run: npm install
+      run: npm ci
       working-directory: packages/artifact
   
     - name: Compile artifact package
       run: npm run tsc
       working-directory: packages/artifact
+      shell: pwsh
 
     - name: Create files that will be uploaded
       run: |
@@ -77,7 +78,27 @@ jobs:
         node -e "Promise.resolve(require('./packages/artifact/lib/artifact-client').create().uploadArtifact('my-artifact-2',['artifact-path/gzip.txt'], '${{ github.workspace }}'))"
 
     - name: Download artifacts using downloadArtifact()
-      run: ./scripts/testDownloadArtifact.ps1
+      run: |
+        $file1 = "artifact-1-directory/artifact-path/world.txt"
+        if(!(Test-Path -path $file1))
+        {
+            Write-Error "artifact-1-directory/artifact-path/world.txt file does not exist"
+        }
+        if(!((Get-Content $file1) -ceq 'hello'))
+        {
+            cat $file1
+            Write-Error "File contents of world.txt are incorrect"
+        }
+        $file2 = "artifact-2-directory/artifact-path/gzip.txt"
+        if(!(Test-Path -path $file2))
+        {
+            Write-Error "artifact-2-directory/artifact-path/gzip.txt does not exist"
+        }
+        if(!((Get-Content $file2) -ceq 'Some large amount of text that has a compression ratio that is greater than 100%. If greater than 100%, gzip is used to upload the file'))
+        {
+            cat $file2
+            Write-Error "File contents of gzip.txt are incorrect"
+        }
       shell: pwsh
 
     - name: Download artifacts using downloadAllArtifacts()
