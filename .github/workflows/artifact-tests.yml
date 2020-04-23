@@ -76,6 +76,7 @@ jobs:
 
     - name: Download artifacts using downloadArtifact()
       run: ./scripts/testDownloadArtifact.ps1
+     shell: pwsh
 
     - name: Download artifacts using downloadAllArtifacts()
       run: |
