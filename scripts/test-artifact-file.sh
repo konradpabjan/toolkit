@@ -16,13 +16,13 @@ if [ $expectedContent == "" ]; then
     exit 1
 fi
 
-if [ ! -f $path ]; then
+if [ ! -f "$path" ]; then
     echo "Expected file $path does not exist"
     exit 1
 fi
 
 actualContent=$(cat $path)
-if [ $content != $fileContent ];then
+if [ "$actualContent" != "$expectedContent" ];then
     echo "File contents are not correct, expected $expectedContent, recieved $actualContent"
     exit 1
 fi
