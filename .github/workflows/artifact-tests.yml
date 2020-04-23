@@ -34,7 +34,7 @@ jobs:
     - name: Compile artifact package
       run: |
         npm install
-        ./node_modules/typescript/bin/tsc
+        npm run build
       working-directory: packages/artifact
 
     - name: Create files that will be uploaded
@@ -77,6 +77,13 @@ jobs:
         node -e "Promise.resolve(require('./packages/artifact/lib/artifact-client').create().uploadArtifact('my-artifact-2',['artifact-path/gzip.txt'], '${{ github.workspace }}'))"
 
     - name: Download artifacts using downloadArtifact()
+      run: |
+        mkdir artifact-1-directory
+        node -e "Promise.resolve(require('./packages/artifact/lib/artifact-client').create().downloadArtifact('my-artifact-1','artifact-1-directory'))"
+        mkdir artifact-2-directory
+        node -e "Promise.resolve(require('./packages/artifact/lib/artifact-client').create().downloadArtifact('my-artifact-2','artifact-2-directory'))"
+    
+    - name: Verify downloadArtifact()
       run: |
         $file1 = "artifact-1-directory/artifact-path/world.txt"
         if(!(Test-Path -path $file1))
