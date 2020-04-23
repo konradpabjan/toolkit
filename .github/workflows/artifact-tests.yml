@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        runs-on: [ubuntu-latest, macOS-latest]
+        runs-on: [ubuntu-latest, macOS-latest, windows-latest]
       fail-fast: false
 
     runs-on: ${{ matrix.runs-on }}
@@ -29,12 +29,10 @@ jobs:
     - name: Install root npm packages
       run: npm ci
 
-    # macOS is weird for some reason and tsc is not recognized as a command even after doing npm install
-    # so the direct bin is referenced
     - name: Compile artifact package
       run: |
         npm install
-        npm run tsc
+        tsc
       working-directory: packages/artifact
 
     - name: Create files that will be uploaded
