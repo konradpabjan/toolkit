@@ -83,9 +83,9 @@ jobs:
     - name: Test files
       shell: bash
       run: |
-        pwd
         ls
-        sudo test-artifact-file.sh artifact-1-directory/artifact-path/world.txt hello
+        chmod +x test-artifact-file.sh
+        test-artifact-file.sh
       working-directory: scripts
     
     - name: Verify downloadArtifact()
