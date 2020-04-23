@@ -81,7 +81,8 @@ jobs:
         node -e "Promise.resolve(require('./packages/artifact/lib/artifact-client').create().downloadArtifact('my-artifact-2','artifact-2-directory'))"
     
     - name: Test files
-      run: ./scripts/testArtifactFile.sh artifact-1-directory/artifact-path/world.txt hello
+      shell: bash
+      run: scripts/testArtifactFile.sh artifact-1-directory/artifact-path/world.txt hello
     
     - name: Verify downloadArtifact()
       run: |
