@@ -30,7 +30,7 @@ jobs:
       run: npm ci
 
     - name: Install artifact npm packages
-      run: npm ci
+      run: npm install
       working-directory: packages/artifact
   
     - name: Compile artifact package
