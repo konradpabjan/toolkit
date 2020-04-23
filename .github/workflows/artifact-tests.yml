@@ -83,9 +83,8 @@ jobs:
     - name: Test files
       shell: bash
       run: |
-        chmod +x test-artifact-file.sh
+        chmod +x ./scripts/test-artifact-file.sh
         ./scripts/test-artifact-file.sh "artifact-1-directory/artifact-path/world.txt" "hello"
-      working-directory: scripts
     
     - name: Verify downloadArtifact()
       run: |
