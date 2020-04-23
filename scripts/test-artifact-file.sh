@@ -3,6 +3,9 @@
 path=$1
 expectedContent=$2
 
+echo $path
+echo $expectedContent
+
 if [ "$path" == "" ]; then
     echo "File path not provided"
     exit 1
