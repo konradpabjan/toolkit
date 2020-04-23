@@ -16,7 +16,7 @@ if [ ! -f "$1" ]; then
 fi
 
 fileContent=$(cat $1)
-if [ "$2" != "$fileContent" ];then
+if [ "$2" != "$fileContent" ]; then
     echo "File contents are not correct, expected $2, recieved $fileContent"
     exit 1
 fi
