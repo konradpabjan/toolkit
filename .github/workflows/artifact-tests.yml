@@ -31,7 +31,7 @@ jobs:
     - name: Compile artifact package
       run: |
         npm install
-        tsc
+        npm run tsc
       working-directory: packages/artifact
 
     - name: Create files that will be uploaded
