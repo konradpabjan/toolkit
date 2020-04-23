@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 path="$1"
 expectedContent="$2"
