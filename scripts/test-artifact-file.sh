@@ -6,12 +6,12 @@ expectedContent=$2
 echo $path
 echo $expectedContent
 
-if [ $path == "" ]; then
+if [ "$path" == "" ]; then
     echo "File path not provided"
     exit 1
 fi
 
-if [ $expectedContent == "" ]; then
+if [ "$expectedContent" == "" ]; then
     echo "Expected file contents not provided"
     exit 1
 fi
