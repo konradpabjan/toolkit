@@ -62,9 +62,9 @@ jobs:
     # The env variables that were retrieved in a different step need to be set for each subsequent shell or upload/download will fail
     - name: Set env variables
       run: |
-        ::set-env name=ACTIONS_RUNTIME_TOKEN::${{ steps.get_runtime_token.outputs.EnvValue }}
-        ::set-env name=ACTIONS_RUNTIME_URL::${{ steps.get_runtime_url.outputs.EnvValue }}
-        ::set-env name=GITHUB_RUN_ID::${{ steps.get_run_id.outputs.EnvValue }}
+        echo "::set-env name=ACTIONS_RUNTIME_TOKEN::${{ steps.get_runtime_token.outputs.EnvValue }}"
+        echo "::set-env name=ACTIONS_RUNTIME_URL::${{ steps.get_runtime_url.outputs.EnvValue }}"
+        echo "::set-env name=GITHUB_RUN_ID::${{ steps.get_run_id.outputs.EnvValue }}"
 
     # We're using node -e to call the functions directly available in the @actions/artifact package
     - name: Upload artifacts using uploadArtifact()
