@@ -1,11 +1,5 @@
 name: artifact-unit-tests
-on:
-  push:
-    paths:
-        - 'packages/artifact/**'
-  pull_request:
-    paths:
-        - 'packages/artifact/**'
+on: push
 
 jobs:
 
