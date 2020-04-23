@@ -7,7 +7,7 @@ jobs:
 
     strategy:
       matrix:
-        runs-on: [ubuntu-latest, macOS-latest, windows-latest]
+        runs-on: [ubuntu-latest]
       fail-fast: false
 
     runs-on: ${{ matrix.runs-on }}
@@ -79,6 +79,10 @@ jobs:
         node -e "Promise.resolve(require('./packages/artifact/lib/artifact-client').create().downloadArtifact('my-artifact-1','artifact-1-directory'))"
         mkdir artifact-2-directory
         node -e "Promise.resolve(require('./packages/artifact/lib/artifact-client').create().downloadArtifact('my-artifact-2','artifact-2-directory'))"
+    
+    - name: Test files
+      run: ./scripts/testArtifactFile.sh artifact-1-directory/artifact-path/world.txt hello
+      shell: bash
     
     - name: Verify downloadArtifact()
       run: |
